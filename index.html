@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coffeeopia - Kahve Kataloğu</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+   
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="#"> Coffeeopia</a>
+        </div>
+    </nav>
+
+   
+    <div class="container mt-3">
+        <div id="no-result-alert" class="alert alert-warning d-none" role="alert">
+            Aradığınız kriterlere uygun kahve bulunamadı!
+        </div>
+    </div>
+
+    
+    <div class="container my-4">
+        <div class="row">
+            
+          
+            <div class="col-md-3 mb-4">
+                <div class="card p-3 shadow-sm">
+                    <h5 class="card-title mb-3">Filtreleme Seçenekleri</h5>
+                    <form id="filter-form">
+                        
+                      
+                        <div class="mb-3">
+                            <label for="search-input" class="form-label">Kahve Adı Ara</label>
+                            <input type="text" class="form-control" id="search-input" placeholder="Örn: Latte...">
+                        </div>
+
+                      
+                        <div class="mb-3">
+                            <label for="category-select" class="form-label">Kategori</label>
+                            <select class="form-select" id="category-select">
+                                <option value="all">Tüm Kategoriler</option>
+                                <option value="espresso">Espresso Bazlı</option>
+                                <option value="filtre">Filtre Kahve</option>
+                                <option value="geleneksel">Geleneksel</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label d-block">Sertlik Derecesi</label>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="roast-level" id="roast-all" value="all" checked>
+                                <label class="form-check-label" for="roast-all">Fark Etmez</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="roast-level" id="roast-light" value="Yumuşak">
+                                <label class="form-check-label" for="roast-light">Yumuşak İçim</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="roast-level" id="roast-dark" value="Sert">
+                                <label class="form-check-label" for="roast-dark">Sert İçim</label>
+                            </div>
+                        </div>
+
+                        <button type="button" id="reset-btn" class="btn btn-outline-secondary btn-sm w-100">Filtreleri Temizle</button>
+                    </form>
+                </div>
+            </div>
+
+            
+            <div class="col-md-9">
+                <div class="row row-cols-1 row-cols-md-3 g-4" id="coffee-container">
+    </div>>
+                    
+                    
+                    <div class="col coffee-item" data-category="espresso" data-roast="Sert">
+                        <div class="card h-100 shadow-sm">
+                            <img src="https://mocacocoffee.com/cdn/shop/articles/espresso-kahve-yaninda-portafilter_1200x679.jpg?v=1717670070" class="card-img-top" alt="Espresso" style="height: 200px; object-fit: cover;">
+                            <div class="card-body">
+                                <h5 class="card-title">Espresso</h5>
+                                <span class="badge bg-danger mb-2">Espresso Bazlı</span>
+                                <span class="badge bg-dark mb-2">Sert</span>
+                                <p class="card-text text-muted small">İnce çekilmiş kahve çekirdeklerinin basınçlı sıcak suyla demlenmesiyle elde edilen yoğun kahve.</p>
+                                <button class="btn btn-sm btn-primary w-100" data-bs-toggle="modal" data-bs-target="#coffeeModal" data-title="Espresso" data-desc="İtalya kökenli, sert ve yoğun bir kahve deneyimi sunar. Diğer tüm sütlü kahvelerin (Latte, Cappuccino) temelidir.">Detayları Gör</button>
+                            </div>
+                        </div>
+                    </div>
+
+                   
+                    <div class="col coffee-item" data-category="espresso" data-roast="Yumuşak">
+                        <div class="card h-100 shadow-sm">
+                            <img src="https://kahhve.com/blog/wp-content/uploads/2025/10/What_is_a_latte-1024x569.jpeg" class="card-img-top" alt="Latte" style="height: 200px; object-fit: cover;">
+                            <div class="card-body">
+                                <h5 class="card-title">Caffe Latte</h5>
+                                <span class="badge bg-danger mb-2">Espresso Bazlı</span>
+                                <span class="badge bg-success mb-2">Yumuşak</span>
+                                <p class="card-text text-muted small">Tek veya çift shot espressonun buharla ısıtılmış sıcak süt ve süt köpüğüyle buluşması.</p>
+                                <button class="btn btn-sm btn-primary w-100" data-bs-toggle="modal" data-bs-target="#coffeeModal" data-title="Caffe Latte" data-desc="Bol sütlü ve hafif içimli kahve severlerin bir numaralı tercihidir. Üzerine yapılan süt sanatları (Latte Art) ile bilinir.">Detayları Gör</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    
+                    <div class="col coffee-item" data-category="filtre" data-roast="Yumuşak">
+                        <div class="card h-100 shadow-sm">
+                            <img src="https://kahhve.com/blog/wp-content/uploads/2020/08/Untitled-design-4.jpg" class="card-img-top" alt="Filtre Kahve" style="height: 200px; object-fit: cover;">
+                            <div class="card-body">
+                                <h5 class="card-title">Filtre Kahve</h5>
+                                <span class="badge bg-warning text-dark mb-2">demleme</span>
+                                <span class="badge bg-success mb-2">Yumuşak</span>
+                                <p class="card-text text-muted small">Öğütülmüş kahve çekirdeklerinin kağıt veya metal filtreden süzülerek demlenmesi yöntemi.</p>
+                                <button class="btn btn-sm btn-primary w-100" data-bs-toggle="modal" data-bs-target="#coffeeModal" data-title="Filtre Kahve" data-desc="Günün her saati tüketilebilen, çekirdeğin yetiştiği bölgenin (Etiyopya, Kolombiya vb.) aromalarını en temiz şekilde sunan yöntemdir.">Detayları Gör</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    
+                    <div class="col coffee-item" data-category="geleneksel" data-roast="Sert">
+                        <div class="card h-100 shadow-sm">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRUlsVHnh6Gcfhmgm2ZZmkrm4QNO446lhwmjA&s" class="card-img-top" alt="Türk Kahvesi" style="height: 200px; object-fit: cover;">
+                            <div class="card-body">
+                                <h5 class="card-title">Türk Kahvesi</h5>
+                                <span class="badge bg-info text-dark mb-2">geleneksel</span>
+                                <span class="badge bg-dark mb-2">Sert</span>
+                                <p class="card-text text-muted small">Çok ince çekilmiş kahvenin cezve veya özel makinede su ve (isteğe bağlı) şekerle kaynatılması.</p>
+                                <button class="btn btn-sm btn-primary w-100" data-bs-toggle="modal" data-bs-target="#coffeeModal" data-title="Türk Kahvesi" data-desc="Geleneksel pişirme tekniği, telvesiyle ikram edilmesi ve yanında lokum/su sunumuyla kültürel bir mirasımızdır.">Detayları Gör</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+        <hr class="my-5">
+
+       
+        <div class="row">
+            <div class="col-12">
+                <h3 class="mb-4 text-center">Kahve Hakkında Sıkça Sorulanlar</h3>
+                <div class="accordion" id="coffeeFAQ">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingOne">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                Espresso ve Filtre Kahve arasındaki fark nedir?
+                            </button>
+                        </h2>
+                        <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#coffeeFAQ">
+                            <div class="accordion-body">
+                                Espresso yüksek basınçlı sıcak suyla çok hızlı (ortalama 25-30 saniye) demlenirken; filtre kahve, yer çekimiyle suyun kahve yatağından süzülmesiyle daha yavaş (3-4 dakika) demlenir. Espresso çok daha yoğun ve serttir.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingTwo">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                Kahve çekirdekleri nasıl saklanmalıdır?
+                            </button>
+                        </h2>
+                        <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#coffeeFAQ">
+                            <div class="accordion-body">
+                                Kahve çekirdekleri hava, nem, ışık ve ısıdan korunmalıdır. Hava geçirmez, ışık almayan mat kutularda veya valfli torbalarda, oda sıcaklığında saklanması önerilir. Buzdolabına konulmamalıdır.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    <div class="modal fade" id="coffeeModal" tabindex="-1" aria-labelledby="coffeeModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="coffeeModalLabel">Kahve Detayı</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Kapat"></button>
+                </div>
+                <div class="modal-content-body p-3" id="modal-body-text">
+                 
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kapat</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

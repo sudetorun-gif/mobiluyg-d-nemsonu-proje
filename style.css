@@ -1,0 +1,18 @@
+body {
+    background-color: #fcf8f5; 
+}
+
+
+.coffee-item {
+    transition: all 0.3s ease-in-out;
+}
+
+.card {
+    border: none;
+    border-radius: 12px;
+}
+
+.card-img-top {
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+}
